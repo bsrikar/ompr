@@ -68,13 +68,23 @@
 <li><a href="https://github.com/dirkschumacher/r-sudoku">Sudokus</a></li>
 </ul>
 <p>The <a href="https://en.wikipedia.org/wiki/Integer_programming">Wikipedia</a> article gives a good starting point if you would like to learn more about the topic.</p>
-<p>This is a beta version. Currently working towards a first stable version for CRAN. At the moment not recommended for production systems / important analyses. Although most obvious bugs should be gone. Happy to get bug reports or feedback.</p>
+<p>I am always happy to get bug reports or feedback.</p>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
+</div>
+<div id="cran" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cran" class="anchor"></a>CRAN</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"ompr"</span>)
+<span class="co">#install.packages("ompr.roi") # not yet working, use dev. version</span></code></pre></div>
+<div id="development-version" class="section level3">
+<h3 class="hasAnchor">
+<a href="#development-version" class="anchor"></a>Development version</h3>
 <p>To install the current development version use devtools:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"dirkschumacher/ompr"</span>)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"dirkschumacher/ompr.roi"</span>)</code></pre></div>
+</div>
 </div>
 <div id="available-solver-bindings" class="section level2">
 <h2 class="hasAnchor">
@@ -220,13 +230,13 @@ weights &lt;-<span class="st"> </span><span class="kw">runif</span>(n, <span cla
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h2>
-<p>As long as the package is under initial development please post an issue first before sending a PR.</p>
+<p>Please post an issue first before sending a PR.</p>
 <p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 <div id="versioning" class="section level2">
 <h2 class="hasAnchor">
 <a href="#versioning" class="anchor"></a>Versioning</h2>
-<p>This package will use <a href="http://semver.org/">Semantic Versioning 2.0.0</a> once the first version is on CRAN.</p>
+<p>This package uses <a href="http://semver.org/">Semantic Versioning 2.0.0</a>.</p>
 <p>Given a version number MAJOR.MINOR.PATCH, increment the:</p>
 <ul>
 <li>MAJOR version when you make incompatible API changes,</li>
