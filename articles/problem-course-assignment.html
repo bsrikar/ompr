@@ -29,10 +29,43 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/modelling.html">Modelling techniques in OMPR</a>
+    </li>
+    <li>
+      <a href="../articles/problem-course-assignment.html">Assigning students to courses</a>
+    </li>
+    <li>
+      <a href="../articles/problem-graph-coloring.html">The Minimum Graph Coloring Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-mtsp.html">The Multiple Traveling Salesmen Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-sudoku.html">Solve Sudokus</a>
+    </li>
+    <li>
+      <a href="../articles/problem-tsp.html">The Traveling Salesman Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-warehouse-location.html">The Warehouse Location Problem</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +93,7 @@
       <h1>Assigning students to courses</h1>
                         <h4 class="author">Dirk Schumacher</h4>
             
-            <h4 class="date">2017-04-19</h4>
+            <h4 class="date">2017-11-18</h4>
           </div>
 
     
@@ -114,13 +147,78 @@ weight &lt;-<span class="st"> </span><span class="cf">function</span>(student, c
 plot_data &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(
   <span class="dt">course =</span> <span class="kw">seq_len</span>(m),
   <span class="dt">weight =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
-) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">count =</span> <span class="kw">sum</span>(<span class="kw">map_int</span>(<span class="kw">seq_len</span>(n), <span class="op">~</span><span class="kw">weight</span>(.x, course) <span class="op">==</span><span class="st"> </span>weight))) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">course =</span> <span class="kw">factor</span>(course), <span class="dt">weight =</span> <span class="kw">factor</span>(weight))
-<span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> course, <span class="dt">y =</span> count, <span class="dt">fill =</span> weight)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">"identity"</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span>viridis<span class="op">::</span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">11</span>)</code></pre></div>
+) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">count =</span> <span class="kw">sum</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(<span class="kw">seq_len</span>(n), <span class="op">~</span><span class="kw">weight</span>(.x, course) <span class="op">==</span><span class="st"> </span>weight))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">course =</span> <span class="kw">factor</span>(course), <span class="dt">weight =</span> <span class="kw">factor</span>(weight))</code></pre></div>
+<pre><code>## Warning in mutate_impl(.data, dots): Unequal factor levels: coercing to
+## character</code></pre>
+<pre><code>## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector</code></pre>
+<pre><code>## Warning in mutate_impl(.data, dots): Unequal factor levels: coercing to
+## character</code></pre>
+<pre><code>## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector
+
+## Warning in mutate_impl(.data, dots): binding character and factor vector,
+## coercing into character vector</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(plot_data, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> course, <span class="dt">y =</span> count, <span class="dt">fill =</span> weight)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>(<span class="dt">stat =</span> <span class="st">"identity"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>viridis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_hline</a></span>(<span class="dt">yintercept =</span> <span class="dv">11</span>)</code></pre></div>
 <p><img src="problem-course-assignment_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 </div>
 <div id="the-model" class="section level2">
@@ -168,45 +266,45 @@ model</code></pre></div>
 <p>We will use <code>glpk</code> to solve the above model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ompr.roi)
 <span class="kw">library</span>(ROI.plugin.glpk)
-result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw">with_ROI</span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
+result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw"><a href="http://www.rdocumentation.org/packages/ompr.roi/topics/with_ROI">with_ROI</a></span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>## &lt;SOLVER MSG&gt;  ----
-## GLPK Simplex Optimizer, v4.60
+## GLPK Simplex Optimizer, v4.63
 ## 44 rows, 160 columns, 320 non-zeros
 ##       0: obj =  -0.000000000e+00 inf =   4.000e+01 (40)
 ##      43: obj =  -1.299944000e+06 inf =   0.000e+00 (0)
-## *   146: obj =   1.180000000e+02 inf =   0.000e+00 (0)
+## *   147: obj =   1.180000000e+02 inf =   0.000e+00 (0)
 ## OPTIMAL LP SOLUTION FOUND
-## GLPK Integer Optimizer, v4.60
+## GLPK Integer Optimizer, v4.63
 ## 44 rows, 160 columns, 320 non-zeros
 ## 160 integer variables, all of which are binary
 ## Integer optimization begins...
-## +   146: mip =     not found yet &lt;=              +inf        (1; 0)
-## +   146: &gt;&gt;&gt;&gt;&gt;   1.180000000e+02 &lt;=   1.180000000e+02   0.0% (1; 0)
-## +   146: mip =   1.180000000e+02 &lt;=     tree is empty   0.0% (0; 1)
+## +   147: mip =     not found yet &lt;=              +inf        (1; 0)
+## +   147: &gt;&gt;&gt;&gt;&gt;   1.180000000e+02 &lt;=   1.180000000e+02   0.0% (1; 0)
+## +   147: mip =   1.180000000e+02 &lt;=     tree is empty   0.0% (0; 1)
 ## INTEGER OPTIMAL SOLUTION FOUND
 ## &lt;!SOLVER MSG&gt; ----</code></pre>
 <p>We solved the problem with an objective value of 118.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matching &lt;-<span class="st"> </span>result <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/get_solution.html">get_solution</a></span>(x[i,j]) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(value <span class="op">&gt;</span><span class="st"> </span>.<span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">select</span>(i, j) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight =</span> <span class="kw">weight</span>(<span class="kw">as.numeric</span>(i), <span class="kw">as.numeric</span>(j)), 
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(value <span class="op">&gt;</span><span class="st"> </span>.<span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(i, j) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">weight =</span> <span class="kw">weight</span>(<span class="kw">as.numeric</span>(i), <span class="kw">as.numeric</span>(j)), 
          <span class="dt">preferences =</span> <span class="kw">paste0</span>(<span class="kw">preferences</span>(<span class="kw">as.numeric</span>(i)), <span class="dt">collapse =</span> <span class="st">","</span>)) <span class="op">%&gt;%</span><span class="st"> </span>ungroup</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(matching)</code></pre></div>
-<pre><code>## # A tibble: 6 × 4
+<pre><code>## # A tibble: 6 x 4
 ##       i     j weight preferences
 ##   &lt;int&gt; &lt;int&gt;  &lt;int&gt;       &lt;chr&gt;
 ## 1     5     1      3       2,3,1
 ## 2    10     1      3       4,3,1
-## 3    12     1      2       3,1,2
-## 4    15     1      3       2,4,1
-## 5    16     1      3       3,4,1
-## 6    23     1      3       2,4,1</code></pre>
+## 3    15     1      3       2,4,1
+## 4    16     1      3       3,4,1
+## 5    23     1      3       2,4,1
+## 6    26     1      3       3,2,1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matching <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(weight) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>())</code></pre></div>
-<pre><code>## # A tibble: 2 × 2
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(weight) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">count =</span> <span class="kw"><a href="http://dplyr.tidyverse.org/reference/n.html">n</a></span>())</code></pre></div>
+<pre><code>## # A tibble: 2 x 2
 ##   weight count
 ##    &lt;int&gt; &lt;int&gt;
 ## 1      2     2
@@ -214,14 +312,14 @@ result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solv
 <p>38 students got their top preference. 2 students were assigned to their second choice and 0 students got their least preferable course.</p>
 <p>The course assignment now looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_data &lt;-<span class="st"> </span>matching <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">course =</span> <span class="kw">factor</span>(j), <span class="dt">weight =</span> <span class="kw">factor</span>(weight, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(course, weight) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>tidyr<span class="op">::</span><span class="kw">complete</span>(weight, <span class="dt">fill =</span> <span class="kw">list</span>(<span class="dt">count =</span> <span class="dv">0</span>))
-<span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> course, <span class="dt">y =</span> count, <span class="dt">fill =</span> weight)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">"identity"</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span>viridis<span class="op">::</span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">11</span>)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">course =</span> <span class="kw">factor</span>(j), <span class="dt">weight =</span> <span class="kw">factor</span>(weight, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(course, weight) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">count =</span> <span class="kw"><a href="http://dplyr.tidyverse.org/reference/n.html">n</a></span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/complete">complete</a></span>(weight, <span class="dt">fill =</span> <span class="kw">list</span>(<span class="dt">count =</span> <span class="dv">0</span>))
+<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(plot_data, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> course, <span class="dt">y =</span> count, <span class="dt">fill =</span> weight)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_bar">geom_bar</a></span>(<span class="dt">stat =</span> <span class="st">"identity"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>viridis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_hline</a></span>(<span class="dt">yintercept =</span> <span class="dv">11</span>)</code></pre></div>
 <p><img src="problem-course-assignment_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
 </div>
 <div id="feedback" class="section level2">
@@ -234,7 +332,8 @@ result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solv
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#the-data">The data</a></li>

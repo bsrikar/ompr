@@ -29,10 +29,43 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/modelling.html">Modelling techniques in OMPR</a>
+    </li>
+    <li>
+      <a href="../articles/problem-course-assignment.html">Assigning students to courses</a>
+    </li>
+    <li>
+      <a href="../articles/problem-graph-coloring.html">The Minimum Graph Coloring Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-mtsp.html">The Multiple Traveling Salesmen Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-sudoku.html">Solve Sudokus</a>
+    </li>
+    <li>
+      <a href="../articles/problem-tsp.html">The Traveling Salesman Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-warehouse-location.html">The Warehouse Location Problem</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +93,7 @@
       <h1>Solve Sudokus</h1>
                         <h4 class="author">Dirk Schumacher</h4>
             
-            <h4 class="date">2017-04-19</h4>
+            <h4 class="date">2017-11-18</h4>
           </div>
 
     
@@ -114,14 +147,14 @@ model</code></pre></div>
 <p>We will use <code>glpk</code> to solve the above model. Note that we haven’t fixed any numbers to specific values. That means that the solver will find a valid sudoku without any prior hints.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ompr.roi)
 <span class="kw">library</span>(ROI.plugin.glpk)
-result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw">with_ROI</span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
+result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw"><a href="http://www.rdocumentation.org/packages/ompr.roi/topics/with_ROI">with_ROI</a></span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>## &lt;SOLVER MSG&gt;  ----
-## GLPK Simplex Optimizer, v4.60
+## GLPK Simplex Optimizer, v4.63
 ## 324 rows, 729 columns, 2916 non-zeros
 ##       0: obj =  -0.000000000e+00 inf =   3.240e+02 (324)
 ##     340: obj =  -0.000000000e+00 inf =   4.087e-14 (0) 1
 ## OPTIMAL LP SOLUTION FOUND
-## GLPK Integer Optimizer, v4.60
+## GLPK Integer Optimizer, v4.63
 ## 324 rows, 729 columns, 2916 non-zeros
 ## 729 integer variables, all of which are binary
 ## Integer optimization begins...
@@ -133,10 +166,10 @@ result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solv
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the following dplyr statement plots a 9x9 matrix</span>
 result <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/get_solution.html">get_solution</a></span>(x[i,j,k]) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">select</span>(i, j, k) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>tidyr<span class="op">::</span><span class="kw">spread</span>(j, k) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>i)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(i, j, k) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/spread">spread</a></span>(j, k) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>i)</code></pre></div>
 <pre><code>##   1 2 3 4 5 6 7 8 9
 ## 1 4 2 3 5 7 8 1 9 6
 ## 2 1 7 5 9 3 6 4 8 2
@@ -158,14 +191,14 @@ result <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(x[<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(x[<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">8</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(x[<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
-result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model_fixed, <span class="kw">with_ROI</span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
+result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model_fixed, <span class="kw"><a href="http://www.rdocumentation.org/packages/ompr.roi/topics/with_ROI">with_ROI</a></span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>## &lt;SOLVER MSG&gt;  ----
-## GLPK Simplex Optimizer, v4.60
+## GLPK Simplex Optimizer, v4.63
 ## 333 rows, 729 columns, 2925 non-zeros
 ##       0: obj =  -0.000000000e+00 inf =   3.330e+02 (333)
 ##     354: obj =  -0.000000000e+00 inf =   1.250e-13 (0) 1
 ## OPTIMAL LP SOLUTION FOUND
-## GLPK Integer Optimizer, v4.60
+## GLPK Integer Optimizer, v4.63
 ## 333 rows, 729 columns, 2925 non-zeros
 ## 729 integer variables, all of which are binary
 ## Integer optimization begins...
@@ -176,10 +209,10 @@ result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solv
 ## &lt;!SOLVER MSG&gt; ----</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/get_solution.html">get_solution</a></span>(x[i,j,k]) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">select</span>(i, j, k) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>tidyr<span class="op">::</span><span class="kw">spread</span>(j, k) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>i) </code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(i, j, k) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/spread">spread</a></span>(j, k) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>i) </code></pre></div>
 <pre><code>##   1 2 3 4 5 6 7 8 9
 ## 1 1 2 3 5 8 4 9 7 6
 ## 2 4 5 6 9 7 3 8 2 1
@@ -201,7 +234,8 @@ result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solv
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#solve-sudokus-using-milp">Solve Sudokus using MILP</a></li>
       <li><a href="#the-model">The model</a></li>

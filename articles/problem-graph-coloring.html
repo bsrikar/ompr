@@ -29,10 +29,43 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/modelling.html">Modelling techniques in OMPR</a>
+    </li>
+    <li>
+      <a href="../articles/problem-course-assignment.html">Assigning students to courses</a>
+    </li>
+    <li>
+      <a href="../articles/problem-graph-coloring.html">The Minimum Graph Coloring Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-mtsp.html">The Multiple Traveling Salesmen Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-sudoku.html">Solve Sudokus</a>
+    </li>
+    <li>
+      <a href="../articles/problem-tsp.html">The Traveling Salesman Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-warehouse-location.html">The Warehouse Location Problem</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +93,7 @@
       <h1>The Minimum Graph Coloring Problem</h1>
                         <h4 class="author">Dirk Schumacher</h4>
             
-            <h4 class="date">2017-04-19</h4>
+            <h4 class="date">2017-11-18</h4>
           </div>
 
     
@@ -83,18 +116,18 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># data from https://github.com/datasets/geo-boundaries-us-110m</span>
 <span class="co"># reference data from here: https://github.com/nvkelso/natural-earth-vector/tree/master/110m_cultural</span>
 <span class="co"># License of reference data: public domain (https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md)</span>
-map_data &lt;-<span class="st"> </span>rgdal<span class="op">::</span><span class="kw">readOGR</span>(<span class="st">"https://raw.githubusercontent.com/datasets/geo-boundaries-us-110m/84e946f6b1de01e2642bcdb17d5b697acb6b48c4/json/ne_110m_admin_1_states_provinces_shp_scale_rank.geojson"</span>, <span class="st">"OGRGeoJSON"</span>)</code></pre></div>
+map_data &lt;-<span class="st"> </span>rgdal<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgdal/topics/readOGR">readOGR</a></span>(<span class="st">"https://raw.githubusercontent.com/datasets/geo-boundaries-us-110m/84e946f6b1de01e2642bcdb17d5b697acb6b48c4/json/ne_110m_admin_1_states_provinces_shp_scale_rank.geojson"</span>, <span class="st">"OGRGeoJSON"</span>)</code></pre></div>
 <pre><code>## OGR data source with driver: GeoJSON 
 ## Source: "https://raw.githubusercontent.com/datasets/geo-boundaries-us-110m/84e946f6b1de01e2642bcdb17d5b697acb6b48c4/json/ne_110m_admin_1_states_provinces_shp_scale_rank.geojson", layer: "OGRGeoJSON"
 ## with 51 features
 ## It has 3 fields</code></pre>
 <p>Next step is to create an adjacency list to determine neighboring states.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this gives as an adjancy list</span>
-neighbors &lt;-<span class="st"> </span>spdep<span class="op">::</span><span class="kw">poly2nb</span>(map_data)
+neighbors &lt;-<span class="st"> </span>spdep<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/spdep/topics/poly2nb">poly2nb</a></span>(map_data)
 
 <span class="co"># a helper function that determines if two nodes are adjacent</span>
 is_adjacent &lt;-<span class="st"> </span><span class="cf">function</span>(i, j) {
-  purrr<span class="op">::</span><span class="kw">map2_lgl</span>(i, j, <span class="op">~</span><span class="st"> </span>.y <span class="op">%in%</span><span class="st"> </span>neighbors[[.x]])
+  purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map2">map2_lgl</a></span>(i, j, <span class="op">~</span><span class="st"> </span>.y <span class="op">%in%</span><span class="st"> </span>neighbors[[.x]])
 }</code></pre></div>
 <p>We can then ask:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_adjacent</span>(<span class="dv">1</span>, <span class="dv">2</span>)</code></pre></div>
@@ -121,13 +154,14 @@ model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/MIPMo
 <span class="st">  </span><span class="kw"><a href="../reference/add_variable.html">add_variable</a></span>(y[k], <span class="dt">type =</span> <span class="st">"binary"</span>, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>
 <span class="st">  </span><span class="co"># minimize colors</span>
-<span class="st">  </span><span class="kw"><a href="../reference/set_objective.html">set_objective</a></span>(<span class="kw"><a href="../reference/sum_expr.html">sum_expr</a></span>(y[k], <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors), <span class="dt">sense =</span> <span class="st">"min"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># multiply by k for symmetrie breaking (signifcant diff. in solution time)</span>
+<span class="st">  </span><span class="kw"><a href="../reference/set_objective.html">set_objective</a></span>(<span class="kw"><a href="../reference/sum_expr.html">sum_expr</a></span>(k <span class="op">*</span><span class="st"> </span>y[k], <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors), <span class="dt">sense =</span> <span class="st">"min"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>
 <span class="st">  </span><span class="co"># each node is colored</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(<span class="kw"><a href="../reference/sum_expr.html">sum_expr</a></span>(x[i, k], <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>n) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>
 <span class="st">  </span><span class="co"># if a color k is used, set y[k] to 1</span>
-<span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(<span class="kw"><a href="../reference/sum_expr.html">sum_expr</a></span>(x[i, k], <span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>n) <span class="op">&lt;=</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>y[k], <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(x[i, k] <span class="op">&lt;=</span><span class="st"> </span>y[k], <span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>n, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>
 <span class="st">  </span><span class="co"># no adjacent nodes have the same color</span>
 <span class="st">  </span><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(x[i, k] <span class="op">+</span><span class="st"> </span>x[j, k] <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>n, <span class="dt">j =</span> <span class="dv">1</span><span class="op">:</span>n, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors, <span class="kw">is_adjacent</span>(i, j))</code></pre></div>
@@ -138,7 +172,7 @@ model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/MIPMo
 ##   Integer: 0 
 ##   Binary: 208 
 ## Model sense: minimize 
-## Constraints: 935</code></pre>
+## Constraints: 1135</code></pre>
 <p>The last constraint uses <em>filter expressions</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/add_constraint.html">add_constraint</a></span>(x[i, k] <span class="op">+</span><span class="st"> </span>x[j, k] <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>n, <span class="dt">j =</span> <span class="dv">1</span><span class="op">:</span>n, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span>max_colors, <span class="kw">is_adjacent</span>(i, j))</code></pre></div>
 <p>This code generates a constraint for each combination of i, j and k with the additional constraint, that <code>is_adjacent(i, j)</code> needs to evaluate to <code>TRUE</code>. Using <em>filter expressions</em> let’s you design a very specific set of constraints with minimal code. This principle can be used with all functions that acceppt quantifiers: <code>sum_expr</code>, <code>set_bounds</code>, <code>add_constraint</code> and <code>add_variable</code>.</p>
@@ -146,43 +180,81 @@ model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/MIPMo
 <div id="solve-it" class="section level2">
 <h2 class="hasAnchor">
 <a href="#solve-it" class="anchor"></a>Solve it</h2>
-<p>Now since we have built the model, we will solve it using the excellent <code>ROI</code> package and the <code>symphony</code> solver. <code>ompr.roi</code> is a solver that takes an <code>ompr</code> package and translates it to <code>ROI</code>: this makes it possible to use range of solvers out of the box.</p>
+<p>Now since we have built the model, we will solve it using the excellent <code>ROI</code> package and the <code>GLPK</code> solver. <code>ompr.roi</code> is a solver that takes an <code>ompr</code> package and translates it to <code>ROI</code>: this makes it possible to use range of solvers out of the box.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ROI)
-<span class="kw">library</span>(ROI.plugin.symphony)
+<span class="kw">library</span>(ROI.plugin.glpk)
 <span class="kw">library</span>(ompr.roi)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw">with_ROI</span>(<span class="st">"symphony"</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw"><a href="http://www.rdocumentation.org/packages/ompr.roi/topics/with_ROI">with_ROI</a></span>(<span class="st">"glpk"</span>, <span class="dt">presolve =</span> <span class="ot">TRUE</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## &lt;SOLVER MSG&gt;  ----
+## GLPK Simplex Optimizer, v4.63
+## 1135 rows, 208 columns, 2372 non-zeros
+## Preprocessing...
+## 1135 rows, 208 columns, 2372 non-zeros
+## Scaling...
+##  A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+## Problem data seem to be well scaled
+## Constructing initial basis...
+## Size of triangular part is 1135
+##       0: obj =   0.000000000e+00 inf =   2.710e+02 (271)
+##      67: obj =   4.500000000e+00 inf =   0.000e+00 (0)
+## *   193: obj =   1.500000000e+00 inf =   0.000e+00 (0) 1
+## OPTIMAL LP SOLUTION FOUND
+## GLPK Integer Optimizer, v4.63
+## 1135 rows, 208 columns, 2372 non-zeros
+## 208 integer variables, all of which are binary
+## Preprocessing...
+## 1135 rows, 208 columns, 2372 non-zeros
+## 208 integer variables, all of which are binary
+## Scaling...
+##  A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+## Problem data seem to be well scaled
+## Constructing initial basis...
+## Size of triangular part is 1135
+## Solving LP relaxation...
+## GLPK Simplex Optimizer, v4.63
+## 1135 rows, 208 columns, 2372 non-zeros
+##     193: obj =   0.000000000e+00 inf =   2.710e+02 (271)
+##     260: obj =   4.500000000e+00 inf =   0.000e+00 (0)
+## *   386: obj =   1.500000000e+00 inf =   0.000e+00 (0) 1
+## OPTIMAL LP SOLUTION FOUND
+## Integer optimization begins...
+## +   386: mip =     not found yet &gt;=              -inf        (1; 0)
+## +  4251: &gt;&gt;&gt;&gt;&gt;   1.000000000e+01 &gt;=   5.000000000e+00  50.0% (204; 10)
+## +  7867: mip =   1.000000000e+01 &gt;=     tree is empty   0.0% (0; 453)
+## INTEGER OPTIMAL SOLUTION FOUND
+## &lt;!SOLVER MSG&gt; ----</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result</code></pre></div>
 <pre><code>## Status: optimal
-## Objective value: 4</code></pre>
-<p>Yay. We found the minimal coloring with 4 colors.</p>
+## Objective value: 10</code></pre>
+<p>Yay. We found the minimal coloring with 10 colors.</p>
 </div>
 <div id="plot-the-result" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plot-the-result" class="anchor"></a>Plot the result</h2>
 <p>Last step is to plot the result. First we will get the colors from the optimal solution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">assigned_colors &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_solution.html">get_solution</a></span>(result, x[i, k]) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(i)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(value <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(i)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(assigned_colors, <span class="dv">5</span>)</code></pre></div>
 <pre><code>##   variable i k value
-## 1        x 1 1     1
-## 2        x 2 1     1
-## 3        x 3 3     1
+## 1        x 1 3     1
+## 2        x 2 3     1
+## 3        x 3 2     1
 ## 4        x 4 2     1
-## 5        x 5 2     1</code></pre>
+## 5        x 5 1     1</code></pre>
 <p>Then we need to prepare the data for ggplot and join the colors to the data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 color_data &lt;-<span class="st"> </span>map_data<span class="op">@</span>data
 color_data<span class="op">$</span>color &lt;-<span class="st"> </span>assigned_colors<span class="op">$</span>k
-plot_data_fort &lt;-<span class="st"> </span><span class="kw">fortify</span>(map_data, <span class="dt">region =</span> <span class="st">"adm1_code"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">left_join</span>(<span class="kw">select</span>(color_data, adm1_code, color), 
+plot_data_fort &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/fortify">fortify</a></span>(map_data, <span class="dt">region =</span> <span class="st">"adm1_code"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(color_data, adm1_code, color), 
             <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"id"</span> =<span class="st"> "adm1_code"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">color =</span> <span class="kw">factor</span>(color))</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">color =</span> <span class="kw">factor</span>(color))</code></pre></div>
 <p>Now we have everything to plot it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(plot_data_fort, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> color)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span>viridis<span class="op">::</span><span class="kw">scale_fill_viridis</span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">option =</span> <span class="st">"D"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(plot_data_fort, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">fill =</span> color)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_quickmap</a></span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>viridis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>(<span class="dt">discrete =</span> <span class="ot">TRUE</span>, <span class="dt">option =</span> <span class="st">"D"</span>)</code></pre></div>
 <p><img src="problem-graph-coloring_files/figure-html/unnamed-chunk-15-1.png" width="672"></p>
 </div>
 <div id="feedback" class="section level2">
@@ -195,7 +267,8 @@ plot_data_fort &lt;-<span class="st"> </span><span class="kw">fortify</span>(map
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#read-spatial-data">Read spatial data</a></li>

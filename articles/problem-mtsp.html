@@ -29,10 +29,43 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/modelling.html">Modelling techniques in OMPR</a>
+    </li>
+    <li>
+      <a href="../articles/problem-course-assignment.html">Assigning students to courses</a>
+    </li>
+    <li>
+      <a href="../articles/problem-graph-coloring.html">The Minimum Graph Coloring Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-mtsp.html">The Multiple Traveling Salesmen Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-sudoku.html">Solve Sudokus</a>
+    </li>
+    <li>
+      <a href="../articles/problem-tsp.html">The Traveling Salesman Problem</a>
+    </li>
+    <li>
+      <a href="../articles/problem-warehouse-location.html">The Warehouse Location Problem</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +93,7 @@
       <h1>The Multiple Traveling Salesmen Problem</h1>
                         <h4 class="author">Dirk Schumacher</h4>
             
-            <h4 class="date">2017-04-19</h4>
+            <h4 class="date">2017-11-18</h4>
           </div>
 
     
@@ -90,14 +123,14 @@ max_y &lt;-<span class="st"> </span><span class="dv">500</span></code></pre></di
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 cities &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n, <span class="dt">x =</span> <span class="kw">c</span>(max_x <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="kw">runif</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">max =</span> max_x)), 
                                      <span class="dt">y =</span> <span class="kw">c</span>(max_y <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="kw">runif</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">max =</span> max_y))) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_depot =</span> <span class="kw">ifelse</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>))
-<span class="kw">ggplot</span>(cities, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> is_depot)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_y)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_x))</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">is_depot =</span> <span class="kw">ifelse</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>))
+<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(cities, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(x, y)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">size =</span> is_depot)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_y)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_x))</code></pre></div>
 <p><img src="problem-mtsp_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Now the distance matrix</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distance &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(<span class="kw">select</span>(cities, x, y), <span class="dt">diag =</span> <span class="ot">TRUE</span>, <span class="dt">upper =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distance &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(cities, x, y), <span class="dt">diag =</span> <span class="ot">TRUE</span>, <span class="dt">upper =</span> <span class="ot">TRUE</span>))</code></pre></div>
 </div>
 <div id="model-formulation" class="section level2">
 <h2 class="hasAnchor">
@@ -155,11 +188,11 @@ model</code></pre></div>
 <p>This model can now be solved by one of the many solver libraries. Here we will use GLPK.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ompr.roi)
 <span class="kw">library</span>(ROI.plugin.glpk)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw">with_ROI</span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve_model.html">solve_model</a></span>(model, <span class="kw"><a href="http://www.rdocumentation.org/packages/ompr.roi/topics/with_ROI">with_ROI</a></span>(<span class="dt">solver =</span> <span class="st">"glpk"</span>))</code></pre></div>
 <p>To extract the solution we can use <code>get_solution</code> method that will return a data.frame which we can further be used with <code>tidyverse</code> packages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">solution &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_solution.html">get_solution</a></span>(result, x[i, j, k]) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) 
-<span class="kw">kable</span>(<span class="kw">head</span>(solution, <span class="dv">3</span>))</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) 
+<span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">head</span>(solution, <span class="dv">3</span>))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">variable</th>
@@ -193,13 +226,13 @@ model</code></pre></div>
 </tbody>
 </table>
 <p>Now we need to link back the indexes in our model with the actual cities.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths &lt;-<span class="st"> </span><span class="kw">select</span>(solution, i, j, k) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">from =</span> i, <span class="dt">to =</span> j, <span class="dt">salesman =</span> k) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trip_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>tidyr<span class="op">::</span><span class="kw">gather</span>(property, idx_val, from<span class="op">:</span>to) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">idx_val =</span> <span class="kw">as.integer</span>(idx_val)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">inner_join</span>(cities, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"idx_val"</span> =<span class="st"> "id"</span>))
-<span class="kw">kable</span>(<span class="kw">head</span>(<span class="kw">arrange</span>(paths, trip_id), <span class="dv">4</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paths &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(solution, i, j, k) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">from =</span> i, <span class="dt">to =</span> j, <span class="dt">salesman =</span> k) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">trip_id =</span> <span class="kw"><a href="http://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/gather">gather</a></span>(property, idx_val, from<span class="op">:</span>to) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">idx_val =</span> <span class="kw">as.integer</span>(idx_val)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(cities, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"idx_val"</span> =<span class="st"> "id"</span>))
+<span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">head</span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(paths, trip_id), <span class="dv">4</span>))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">salesman</th>
@@ -250,12 +283,12 @@ model</code></pre></div>
 </tbody>
 </table>
 <p>And plot it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cities, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> is_depot)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> paths, <span class="kw">aes</span>(<span class="dt">group =</span> trip_id, <span class="dt">color =</span> <span class="kw">factor</span>(salesman))) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">paste0</span>(<span class="st">"Optimal route with cost: "</span>, <span class="kw">round</span>(<span class="kw"><a href="../reference/objective_value.html">objective_value</a></span>(result), <span class="dv">2</span>))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_y)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_x))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(cities, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(x, y)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">size =</span> is_depot)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>(<span class="dt">data =</span> paths, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">group =</span> trip_id, <span class="dt">color =</span> <span class="kw">factor</span>(salesman))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="kw">paste0</span>(<span class="st">"Optimal route with cost: "</span>, <span class="kw">round</span>(<span class="kw"><a href="../reference/objective_value.html">objective_value</a></span>(result), <span class="dv">2</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_y)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, max_x))</code></pre></div>
 <p><img src="problem-mtsp_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="feedback" class="section level2">
@@ -268,7 +301,8 @@ model</code></pre></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#setting">Setting</a></li>
